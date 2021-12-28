@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import './App.css';
 
@@ -12,13 +12,28 @@ const App = () => {
     subtitle: 'Put your life in the hands of a computer.',
   }
 
+  // Gets the data - MUST GO FIRST  
+  useEffect(() => {
+    localGet();
+  }, [])
 
-  const componentDidMount = () => {
-    console.log('component counted');
+  // Saves the data - MUST GO LAST
+  useEffect(() => {
+    localSave();
+  }, [options])
+
+  // Local save to storage
+  const localSave = () => {
+    localStorage.setItem('options', JSON.stringify(options));
   }
 
-
-
+  // Local get from storage
+  const localGet = () => {
+    if(localStorage.getItem('options') !== null) {
+      let json = JSON.parse(localStorage.getItem('options'));
+      setOptions(json);
+    }
+  }
 
   // Submit form function
   const onFormSubmit = (e) => {
@@ -50,20 +65,22 @@ const App = () => {
 
   // The app on the screen
   return (
-    <div>
-      <h1>{app.title}</h1>
-      {app.subtitle && <p>{app.subtitle}</p>}
-      <form onSubmit={onFormSubmit}>
-        <input type='text' name='option' />{' '}
-        <button>Add Option</button>
+    <div id='wrapper'>
+      <h1 id='title'>{app.title}</h1>
+      {app.subtitle && <p class='text'>{app.subtitle}</p>}
+      <form class='form-area' onSubmit={onFormSubmit}>
+        <input class='input-field' type='text' name='option' placeholder='Enter an option...' autocomplete='off' />{' '}
+        <button class='button-field'>Add Option</button>
       </form><br />
-      <button disabled={options.length <= 1} onClick={onMakeDecision}>What should I do?</button>{' '}
-      <button disabled={options.length === 0} onClick={removeAll}>Remove All ({options.length})</button>
-      {error && <p style={{color:'red'}}>{error}</p>}
+      <div class='buttons-holder'>
+        <button class='button-field' disabled={options.length <= 1} onClick={onMakeDecision}>What should I do?</button>{' '}
+        <button class='button-field' disabled={options.length === 0} onClick={removeAll}>Remove All ({options.length})</button>
+      </div>
+      {error && <p class='text text-red'>{error}</p>}
       <ul>
         {
           options.map((option, key) => {
-            return <li key={key}>{option} <button onClick={(e) => deleteOption({option})}>Delete</button></li>
+            return <p class='item' key={key}>{option} <button class='delete-button' onClick={(e) => deleteOption({option})}>Delete</button></p>
           })
         }
       </ul>

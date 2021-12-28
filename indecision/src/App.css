@@ -1,0 +1,84 @@
+body{
+    background-color:rgb(37, 37, 37);
+    margin:0;
+    padding:0;
+}
+
+#wrapper{
+    width:100%;
+    max-width:1000px;
+    margin:0 auto;
+}
+
+#title{
+    color:whitesmoke;
+    font-size:50px;
+    text-align:center;
+}
+
+.text{
+    color:whitesmoke;
+    text-align:center;
+}
+
+.text-red{
+    color:tomato;
+}
+
+.form-area{
+    text-align:center;
+}
+
+.input-field{
+    height:40px;
+    width:300px;
+    padding:0 10px;
+    font-size:20px;
+    outline:none;
+    border:2px solid transparent;
+    border-radius:100px;
+    transition: ease .25s;
+}
+
+.input-field:focus{
+    border:2px solid tomato;
+}
+
+.button-field{
+    height:44px;
+    padding:0 10px;
+    margin-left:5px;
+    font-size:15px;
+    font-weight:bold;
+    outline:none;
+    border:2px solid transparent;
+    border-radius:100px;
+    transition: ease .25s;
+    cursor:pointer;
+}
+
+.button-field:hover{
+    color:tomato;
+}
+
+.buttons-holder{
+    text-align:center;
+}
+
+.item{
+    border-bottom:2px solid tomato;
+    font-size:25px;
+    padding:0 5px 10px 5px;
+    color:white;
+}
+
+.delete-button{
+    float:right;
+    background:transparent;
+    border:none;
+    color:white;
+    font-weight:bold;
+    cursor: pointer;
+    margin-top:10px;
+}
+
